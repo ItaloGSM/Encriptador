@@ -6,13 +6,13 @@ exports.Decrypt = (message, password) => {
   let indiceAtual = 0;
   let initialString = "";
 
-  function obterProximoValorCircular() {
+  function passwordNextValue() {
     const valorAtual = password[indiceAtual];
     indiceAtual = (indiceAtual + 1) % password.length;
     return valorAtual;
   }
 
-  function obterProximoValorCircularNegativo(int) {
+  function fixNegativeIndex(int) {
     if (int < 0) {
       return cipherCaracters.length + int;
     } else {
@@ -28,11 +28,7 @@ exports.Decrypt = (message, password) => {
         "Sua mensagem não está dentro dos parâmetros aceitos e por isso não pode ser decriptada"
       );
     } else {
-      initialString += findCaracter(
-        obterProximoValorCircularNegativo(
-          (caracterIndex - obterProximoValorCircular()) % cipherCaracters.length
-        )
-      );
+      initialString += findCaracter(fixNegativeIndex((caracterIndex - passwordNextValue()) % cipherCaracters.length));
     }
   }
 

@@ -6,7 +6,7 @@ exports.Encrypt = (message, password) => {
   let indiceAtual = 0;
   let initialString = "";
 
-  function obterProximoValorCircular() {
+  function passwordNextValue() {
     const valorAtual = password[indiceAtual];
     indiceAtual = (indiceAtual + 1) % password.length;
     return valorAtual;
@@ -20,7 +20,7 @@ exports.Encrypt = (message, password) => {
         "Sua mensagem não está dentro dos parâmetros aceitos e por isso não pode ser encriptada"
       );
     } else {
-      initialString += findCaracter((caracterIndex + obterProximoValorCircular()) % cipherCaracters.length);
+      initialString += findCaracter((caracterIndex + passwordNextValue()) % cipherCaracters.length);
     }
   }
 
