@@ -2,7 +2,6 @@ const { findIndex } = require("./findIndex");
 const { findCaracter } = require("./findCaracter");
 
 exports.Encrypt = (message, password) => {
-  console.log(message, password);
   let indiceAtual = 0;
 
   function obterProximoValorCircular() {
