@@ -14,7 +14,11 @@ exports.Decrypt = (message, password) => {
 
   function fixNegativeIndex(int) {
     if (int < 0) {
-      return cipherCaracters.length + int;
+      if (cipherCaracters.length + int > 0) {
+        return cipherCaracters.length + int;
+      } else {
+        return fixNegativeIndex(cipherCaracters.length + int);
+      }
     } else {
       return int;
     }
@@ -28,7 +32,11 @@ exports.Decrypt = (message, password) => {
         "Sua mensagem não está dentro dos parâmetros aceitos e por isso não pode ser decriptada"
       );
     } else {
-      initialString += findCaracter(fixNegativeIndex((caracterIndex - passwordNextValue()) % cipherCaracters.length));
+      initialString += findCaracter(
+        fixNegativeIndex(
+          (caracterIndex - passwordNextValue()) % cipherCaracters.length
+        )
+      );
     }
   }
 
