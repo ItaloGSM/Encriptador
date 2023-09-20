@@ -8,8 +8,14 @@ exports.Encrypt = (message, password) => {
 
   function passwordNextValue() {
     const valorAtual = password[indiceAtual];
-    indiceAtual = (indiceAtual + 1) % password.length;
-    return valorAtual;
+    if (valorAtual < 0 || isNaN(valorAtual)) {
+      throw new Error(
+        "Sua senha não está dentro dos parâmetros aceitos e por isso não pode ser encriptada"
+      );
+    } else {
+      indiceAtual = (indiceAtual + 1) % password.length;
+      return valorAtual;
+    }
   }
 
   for (let index = 0; index < message.length; index++) {
@@ -20,7 +26,9 @@ exports.Encrypt = (message, password) => {
         "Sua mensagem não está dentro dos parâmetros aceitos e por isso não pode ser encriptada"
       );
     } else {
-      initialString += findCaracter((caracterIndex + passwordNextValue()) % cipherCaracters.length);
+      initialString += findCaracter(
+        (caracterIndex + passwordNextValue()) % cipherCaracters.length
+      );
     }
   }
 

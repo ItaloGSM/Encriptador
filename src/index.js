@@ -3,7 +3,6 @@ const Fastify = require("fastify");
 const fastify = Fastify({
   logger: false,
 });
-
 require("dotenv").config();
 require("./routes")(fastify);
 
