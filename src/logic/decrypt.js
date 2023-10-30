@@ -1,6 +1,6 @@
 const { findIndex } = require("./findIndex");
 const { findCaracter } = require("./findCaracter");
-const cipherCaracters = process.env.CIPHER_CARACTERS;
+const cipherCaracters = require("../utils/rules");
 
 exports.Decrypt = (message, password) => {
   let indiceAtual = 0;

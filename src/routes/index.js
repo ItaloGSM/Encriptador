@@ -1,5 +1,7 @@
-const { cipherRoutes } = require("./cipher");
+const cipherRoutes = require("./cipher");
 
-module.exports = (fastify) => {
+const routes = (fastify) => {
   cipherRoutes(fastify);
 };
+
+module.exports = routes;
